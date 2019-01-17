@@ -21,6 +21,7 @@ else:
 rgn_num = int(rgn_num)
 x = 1
 while x <= rgn_num:
+    print("Making you some files you're likely going to ignore...")
     wb1 = load_workbook('data' + str(x) +'.xlsx')
     ws1 = wb1.active
     ws1.delete_cols(12,1)
@@ -123,6 +124,7 @@ else:
     c=3
     for row in ws0.iter_rows(min_col=3, min_row=3, max_col=3, max_row=rows):
         for cell in row:
+            print('Doing your work!')
             ws0['C'+str(c)] = Translator("=SUM('SNR Totals'!C2,'SER Totals'!C2,'SCR Totals'!C2,'NWR Totals'!C2,'NER Totals'!C2, 'CNR Totals'!C2,'CCC Totals'!C2)", 'C2').translate_formula('C'+str(c))
             c+=1
 
@@ -130,6 +132,7 @@ else:
     d=3
     for row in ws0.iter_rows(min_col=4, min_row=3, max_col=4, max_row=rows):
         for cell in row:
+            print('Doing some more of your work!')
             ws0['D'+str(d)] = Translator("=SUM('SNR Totals'!C2,'SER Totals'!C2,'SCR Totals'!C2,'NWR Totals'!C2,'NER Totals'!C2, 'CNR Totals'!C2,'CCC Totals'!C2)", 'C2').translate_formula('D'+str(d))
             d+=1
 
@@ -138,6 +141,7 @@ else:
     e=3
     for row in ws0.iter_rows(min_col=5, min_row=3, max_col=5, max_row=rows):
         for cell in row:
+            print('Still working on it!')
             ws0['E'+str(e)] = Translator("=SUM('SNR Totals'!C2,'SER Totals'!C2,'SCR Totals'!C2,'NWR Totals'!C2,'NER Totals'!C2,'CNR Totals'!C2,'CCC Totals'!C2)", 'C2').translate_formula('E'+str(e))
             e+=1
 
@@ -157,5 +161,5 @@ red_text = Font(color="9C0006")
 # Format if cell is less than 'formula'
 ws0.conditional_formatting.add('F2:F'+str(rows),CellIsRule(operator='lessThan', formula=[.70], stopIfTrue=True, fill=redFill, font=red_text))
 
-
+print("All finished with Statewide_Totals_"+ trn_name +".xlsx  Now it's your turn to do something!")
 wb0.save('Statewide_Totals_'+ trn_name +'.xlsx')
